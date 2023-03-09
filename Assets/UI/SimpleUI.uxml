@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement>
+        <ui:Label text="Console" display-tooltip-when-elided="true" name="Console" style="position: absolute; height: 103px; width: 1028px; font-size: 64px; top: 15px; left: 5px; color: rgb(255, 255, 255); -unity-text-outline-color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0);" />
+        <ui:Label text="EnemyHP" display-tooltip-when-elided="true" name="EnemyHP" style="position: absolute; height: 50px; width: 200px; top: 150px; left: 1420px; font-size: 36px; color: rgb(255, 150, 0);" />
+        <ui:Label text="Enemy Hit Points" display-tooltip-when-elided="true" name="PHPLabel" style="position: absolute; top: 108px; left: 1417px; color: rgb(255, 150, 0); font-size: 22px;" />
+        <ui:Button text="Player Attack" display-tooltip-when-elided="true" name="LeftAttackButton" style="position: absolute; top: 700px; left: 300px; width: 242px; height: 62px;" />
+        <ui:Label text="PlayerHP" display-tooltip-when-elided="true" name="PlayerHP" style="position: absolute; height: 50px; width: 200px; top: 150px; left: 325px; font-size: 36px; color: rgb(255, 255, 0);" />
+        <ui:Label text="Player Hit Points" display-tooltip-when-elided="true" name="PHPLabel" style="position: absolute; top: 124px; left: 315px; color: rgb(255, 255, 0); font-size: 22px;" />
+        <ui:Button text="Spawn Enemy" display-tooltip-when-elided="true" name="SpawnEnemyButton" style="position: absolute; top: 1000px; left: 50px; font-size: 36px;" />
+        <ui:Button text="Enemy Attack" display-tooltip-when-elided="true" name="RightAtkButton" style="position: absolute; top: 700px; left: 1345px; width: 300px; height: 50px;" />
+        <ui:DropdownField label="Choose an enemy type" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="enemyDDField" style="position: absolute; width: 440px; top: 8px; left: 1216px;" />
+    </ui:VisualElement>
+</ui:UXML>
