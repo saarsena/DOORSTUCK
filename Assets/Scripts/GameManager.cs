@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
     public UIDocument btnDoc;
-    private float playerHealth, enemyHealth, playerAV, enemyAV, playerNoa, enemyNoa;
+    private float playerHealth, playerAV, enemyAV, playerNoa, enemyNoa;
     public Button patkBtn, eatkBtn, spwnBtn;
     public Label consoleOut, PlayerHP, EnemyHP;
     public Fighter playerprefab, spawnedPlayer;
@@ -22,7 +23,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        var choices = new List<string> { "Lich", "Skeleton" };
+        var choices = new List<string> { "Abomination", "Archer", "Bat", "Bear", "Blob",
+            "Camel", "Centaur", "Centipede","Crab", "Cricket", "Cultist", "Devil", "Djinn",
+            "Donkey", "Eyeball", "Fighter", "Gascloud", "Horse", "Lich", "Lizard", "Lizardman",
+            "Lizardninja", "Monkey", "Mosquitoman", "Mule", "Pegasus", "Rats", "Shade",
+            "Skeleton", "Snake", "Snakeman", "Unicorn", "Wolf" };
+
         btnDoc = GetComponent<UIDocument>();
         
         patkBtn = btnDoc.rootVisualElement.Q("LeftAttackButton") as Button;
@@ -107,10 +113,9 @@ public class GameManager : MonoBehaviour
 
     public void OnButtonClickSpwnBtn(ClickEvent click)
     {
-        int i = Random.Range(0, enemyprefab.Length - 1);
+        
         enemyprefab[i].GetComponent<SpriteRenderer>().enabled = true;
         GetEnemy(enemyprefab[i]);
-        //spawnedEnemy = enemyprefab[i];    
         Debug.Log("From within the OnBttonClickSpwnBtn function" + EnemyHP.text);
         spwnBtn.SetEnabled(false);
         
