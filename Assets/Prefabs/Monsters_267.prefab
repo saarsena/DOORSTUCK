@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6301535211505745506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,5 +98,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  mana: 100
+  armorValue: 0
   attackValue: 2
   numberOfAttacks: 1
+  str: 10
+  dex: 10
+  con: 10
+  intel: 10
+  wis: 10
+  charis: 10
+  isEnemy: 1

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3157749955389868980}
   - component: {fileID: 290267198694736054}
-  - component: {fileID: -3994372553818832942}
+  - component: {fileID: -5742581379145035412}
   m_Layer: 0
   m_Name: Monsters_207
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1138652094505980532}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-3994372553818832942
+--- !u!114 &-5742581379145035412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,9 +94,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1138652094505980532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdc8b896121b53f459db4ddc5e939806, type: 3}
+  m_Script: {fileID: 11500000, guid: 733128de10f4dc0429ec83e2c9f5aa97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  mana: 100
+  armorValue: 0
   attackValue: 2
   numberOfAttacks: 1
+  str: 10
+  dex: 10
+  con: 10
+  intel: 10
+  wis: 10
+  charis: 10
+  isEnemy: 1

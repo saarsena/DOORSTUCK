@@ -1,17 +1,20 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
     public UIDocument btnDoc;
     private float playerHealth, playerAV, enemyAV, playerNoa, enemyNoa;
-    public Button patkBtn, eatkBtn, spwnBtn;
+    public UnityEngine.UIElements.Button patkBtn, eatkBtn, spwnBtn;
     public Label consoleOut, PlayerHP, EnemyHP;
     public Fighter playerprefab, spawnedPlayer;
     public Enemy[] enemyprefab;
@@ -19,21 +22,23 @@ public class GameManager : MonoBehaviour
     private bool isPlayerAttacking = true;
     DropdownField menuSelect;
 
-    
+    List<string> choices = new List<string> { "Abomination", "Archer", "Bat", "Bear", "Blob",
+            "Camel", "Centaur", "Centipede","Crab", "Cricket", "Cultist", "Devil", "Djinn",
+            "Donkey", "Eyeball", "Fighter", "Gascloud", "Horse", "Lich", "Lizard", "Lizardman",
+            "Lizardninja", "Monkey", "Mosquitoman", "Mule", "Pegasus", "Rat", "Shade",
+            "Skeleton", "Snake", "Snakeman", "Unicorn", "Wolf" };
+
+
 
     void Start()
     {
-        var choices = new List<string> { "Abomination", "Archer", "Bat", "Bear", "Blob",
-            "Camel", "Centaur", "Centipede","Crab", "Cricket", "Cultist", "Devil", "Djinn",
-            "Donkey", "Eyeball", "Fighter", "Gascloud", "Horse", "Lich", "Lizard", "Lizardman",
-            "Lizardninja", "Monkey", "Mosquitoman", "Mule", "Pegasus", "Rats", "Shade",
-            "Skeleton", "Snake", "Snakeman", "Unicorn", "Wolf" };
+        
 
         btnDoc = GetComponent<UIDocument>();
         
-        patkBtn = btnDoc.rootVisualElement.Q("LeftAttackButton") as Button;
-        eatkBtn = btnDoc.rootVisualElement.Q("RightAtkButton") as Button;
-        spwnBtn = btnDoc.rootVisualElement.Q("SpawnEnemyButton") as Button;
+        patkBtn = btnDoc.rootVisualElement.Q("LeftAttackButton") as UnityEngine.UIElements.Button;
+        eatkBtn = btnDoc.rootVisualElement.Q("RightAtkButton") as UnityEngine.UIElements.Button;
+        spwnBtn = btnDoc.rootVisualElement.Q("SpawnEnemyButton") as UnityEngine.UIElements.Button;
         consoleOut = btnDoc.rootVisualElement.Q("Console") as Label;
         PlayerHP = btnDoc.rootVisualElement.Q("PlayerHP") as Label;
         EnemyHP = btnDoc.rootVisualElement.Q("EnemyHP") as Label;
@@ -42,14 +47,14 @@ public class GameManager : MonoBehaviour
         menuSelect.choices = choices;
         menuSelect.value = choices[0];
         
-        Fighter player = Instantiate(playerprefab, new Vector3(-5, 1, 0), Quaternion.identity) as Fighter;
+        Fighter player = Instantiate(playerprefab, new Vector3(-7, 1, 0), Quaternion.identity) as Fighter;
         spawnedPlayer = player;
         Debug.Log(spawnedPlayer.Health.ToString());
         
     
         for (int i = 0; i < enemyprefab.Length; i++)
         {
-            enemyprefab[i] = Instantiate(enemyprefab[i], new Vector3(5, 1, 0), Quaternion.identity) as Enemy;
+            enemyprefab[i] = Instantiate(enemyprefab[i], new Vector3(1, 1, 0), Quaternion.identity) as Enemy;
             enemyprefab[i].GetComponent<SpriteRenderer>().enabled = false;
         }
 
@@ -63,18 +68,15 @@ public class GameManager : MonoBehaviour
         eatkBtn.RegisterCallback<ClickEvent>(OnButtonClickEnemyAtk);
 
         spwnBtn.RegisterCallback<ClickEvent>(OnButtonClickSpwnBtn);
+     
     }
-
     void Update()
     {
         PlayerHP.text = spawnedPlayer.Health.ToString();
-        
-        if (!spwnBtn.enabledInHierarchy)
+        if (spawnedEnemy)
         {
             EnemyHP.text = spawnedEnemy.Health.ToString();
         }
-
-
         if (isPlayerAttacking)
         {
             eatkBtn.visible = false;
@@ -110,14 +112,14 @@ public class GameManager : MonoBehaviour
         enemyNoa = spawnedEnemy.NumberOfAttacks;
         Debug.Log("From within GetEnemy()" + spawnedEnemy.Health.ToString() );
     }
-
     public void OnButtonClickSpwnBtn(ClickEvent click)
     {
-        
-        enemyprefab[i].GetComponent<SpriteRenderer>().enabled = true;
-        GetEnemy(enemyprefab[i]);
-        Debug.Log("From within the OnBttonClickSpwnBtn function" + EnemyHP.text);
-        spwnBtn.SetEnabled(false);
-        
+        if(spawnedEnemy)
+        {
+            spawnedEnemy.GetComponent<SpriteRenderer>().enabled = false;
+            spawnedEnemy = null;
+        }
+        enemyprefab[menuSelect.index].GetComponent<SpriteRenderer>().enabled = true;
+        GetEnemy(enemyprefab[menuSelect.index]);
     }
 }
